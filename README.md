@@ -1,8 +1,6 @@
-# today_work
+# ssh認証前のgitアクセス
 
-作業用スクリプト置き場。
-
-## スクリプト
+## スクリプト2つ
 
 ### `install_gh_apt.sh`
 
@@ -14,10 +12,9 @@ bash install_gh_apt.sh
 
 ### `migrate_gh_to_nix.sh`
 
-apt 版の `gh` を削除し、nix でインストールし直す。
+apt 版の `gh` を削除する。
 
 ```bash
 bash migrate_gh_to_nix.sh
 ```
 
-> home-manager を使っている場合は `nix profile install` の代わりに `home.packages = [ pkgs.gh ];` を追加する。
