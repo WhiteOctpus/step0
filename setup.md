@@ -17,13 +17,14 @@
 
 ## 手順
 
-### 1. リポジトリ取得
+### 0. gh を一時インストール（step0.sh）
 
-リポジトリは private のため、gh CLI 経由で取得する。
+リポジトリは private のため、まず `gh` を apt で一時的にインストールして認証する。
 
 ```bash
-# 最低限のツールをインストール
-sudo apt install -y git gh curl
+# step0.sh を直接実行するか、手動で同等の操作を行う
+sudo apt install -y git curl
+bash step0.sh
 
 # GitHub 認証（ブラウザが開くので指示に従う）
 gh auth login
@@ -32,10 +33,13 @@ gh auth login
 gh repo clone WhiteOctpus/dotfiles-mini
 ```
 
-### 2. スクリプト実行
+> `step0.sh` は apt で `gh` をインストールするだけのスクリプト。
+> Home Manager が `gh` を管理するようになった後は `step9.sh` で削除する。
+
+### 1. リポジトリ取得後、スクリプト実行（step1.sh）
 
 ```bash
-bash dotfiles-mini/setup.sh
+bash dotfiles-mini/step1.sh
 ```
 
 スクリプトが自動で以下を順番に実行する：
@@ -48,6 +52,14 @@ bash dotfiles-mini/setup.sh
 6. mise インストール + ランタイム（node, python）のインストール
 7. uv インストール
 8. Claude Code インストール
+
+### 2. apt 版 gh を削除（step9.sh）
+
+`step1.sh` 完了後、Home Manager が `gh` を管理するようになっているため apt 版を削除する。
+
+```bash
+bash step9.sh
+```
 
 ### 3. ターミナル再起動
 
