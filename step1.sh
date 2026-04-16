@@ -114,6 +114,11 @@ if ! command -v claude &>/dev/null; then
     curl -fsSL https://claude.ai/install.sh | sh
 fi
 
+echo "=== TPM (tmux plugin manager) セットアップ ==="
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 echo "=== nb notebooks セットアップ ==="
 if command -v nb &>/dev/null; then
     if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
