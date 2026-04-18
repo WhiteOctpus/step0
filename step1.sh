@@ -117,6 +117,15 @@ fi
 echo "=== TPM (tmux plugin manager) セットアップ ==="
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo "=== zenhan.exe セットアップ (WSL IME制御) ==="
+if [ -f /proc/version ] && grep -qi microsoft /proc/version; then
+    if ! command -v zenhan.exe &>/dev/null; then
+        curl -fLO https://github.com/iuchim/zenhan/releases/download/v0.0.1/zenhan.zip
+        unzip -q zenhan.zip
+        sudo mv zenhan/bin64/zenhan.exe /usr/local/bin/zenhan.exe
+        rm -rf zenhan zenhan.zip
+    fi
 fi
 
 echo "=== nb notebooks セットアップ ==="
